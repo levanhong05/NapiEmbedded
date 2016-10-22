@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChartWidget</class>
+ <widget class="QDialog" name="ChartWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#ChartWidget {
+border: 2px solid;
+border-color: rgb(255, 0, 0);
+background-color: qconicalgradient(cx:1, cy:0.381, angle:0, stop:0 rgba(115, 177, 170, 255), stop:1 rgba(255, 255, 255, 255));
+}
+
+QWidget{
+font-family: &quot;FixedSystem Regular&quot;,Fixedsys;
+font-size: 20pt;
+border: none;
+background-color:none;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
