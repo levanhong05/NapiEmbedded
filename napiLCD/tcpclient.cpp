@@ -4,15 +4,10 @@
 #include <QNetworkInterface>
 
 TCPClient::TCPClient(QObject *parent) :
-    QThread(parent)
+    QObject(parent)
 {
     socket = 0;
     connected = false;
-}
-
-void TCPClient::run()
-{
-    qDebug() << "Thread started";
 }
 
 void TCPClient::tryConnect()
@@ -20,6 +15,8 @@ void TCPClient::tryConnect()
     if (connected) {
         return;
     }
+
+    qDebug() << "try connect";
 
     if (socket == 0) {
         socket = new QTcpSocket();

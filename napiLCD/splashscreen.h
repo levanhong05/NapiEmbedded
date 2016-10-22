@@ -1,8 +1,8 @@
 #ifndef SPLASHSCREEN_H
 #define SPLASHSCREEN_H
 
-#include <QCloseEvent>
 #include <QDialog>
+#include <QCloseEvent>
 
 namespace Ui {
 class SplashScreen;
@@ -20,6 +20,7 @@ private:
 
 private:
     Ui::SplashScreen *ui;
+
 };
 
 #endif // SPLASHSCREEN_H

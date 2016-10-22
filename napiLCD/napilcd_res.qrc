@@ -5,5 +5,7 @@
         <file>images/distance.png</file>
         <file>images/pressure.png</file>
         <file>images/construction.jpg</file>
+        <file>images/checked.png</file>
+        <file>images/unchecked.png</file>
     </qresource>
 </RCC>

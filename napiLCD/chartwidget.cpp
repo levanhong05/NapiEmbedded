@@ -8,7 +8,7 @@ ChartWidget::ChartWidget(QWidget *parent) :
     ui->setupUi(this);
 
     plot = new QwtPlot();
-    plot->setTitle(tr("Pression résiduelle"));
+    plot->setTitle(tr("Graphe de pression"));
 
     // Customize axis label font
     QFont font;

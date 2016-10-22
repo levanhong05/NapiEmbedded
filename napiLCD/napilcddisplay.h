@@ -2,6 +2,7 @@
 #define NAPILCDDISPLAY_H
 
 #include <QHash>
+#include <QTimer>
 #include <QMainWindow>
 
 #include "distancewidget.h"
@@ -11,6 +12,7 @@
 
 #include "udplistener.h"
 #include "splashscreen.h"
+#include "networkthread.h"
 
 #include <QButtonGroup>
 #include <QCloseEvent>
@@ -66,6 +68,13 @@ public slots:
 
     void onButtonClicked(int id);
 
+public slots:
+    void onUpdateTime();
+
+    void onCheckNetwork();
+
+    void handleNetworkStatus(QString msg);
+
 private slots:
     void on_btnClose_clicked();
 
@@ -82,6 +91,15 @@ private:
     QButtonGroup* buttonGroup;
 
     SplashScreen *_splash;
+
+    NetworkThread *_networkValidator;
+
+    QTimer *timerClient;
+    QTimer *timerTime;
+    QTimer *timerNetwork;
+
+    QString m_processToken;
+    QString m_tmpBatch;
 };
 
 #endif // NAPILCDDISPLAY_H

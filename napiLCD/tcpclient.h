@@ -1,10 +1,10 @@
 #ifndef TCPCLIENT_H
 #define TCPCLIENT_H
 
-#include <QThread>
+#include <QObject>
 #include <QTcpSocket>
 
-class TCPClient : public QThread
+class TCPClient : public QObject
 {
     Q_OBJECT
 public:
@@ -13,15 +13,12 @@ public:
 public slots:
     void disconnected();
 
-protected:
-    virtual void run();
+private slots:
+    void tryConnect();
 
 private:
     QTcpSocket *socket;
     bool connected;
-
-private slots:
-    void tryConnect();
 
 };
 

@@ -175,7 +175,7 @@ background-color:none;
         <enum>QFrame::NoFrame</enum>
        </property>
        <property name="digitCount">
-        <number>10</number>
+        <number>7</number>
        </property>
        <property name="segmentStyle">
         <enum>QLCDNumber::Flat</enum>

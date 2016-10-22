@@ -50,9 +50,7 @@ void TCPServer::readyRead()
         }
 
         emit dataChanged(values.join(" "));
+
+        _client->close();
     }
-
-    _client->close();
-
-
 }

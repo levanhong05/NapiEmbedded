@@ -26,7 +26,8 @@ SOURCES +=  main.cpp\
             udplistener.cpp \
     androidsender.cpp \
     splashscreen.cpp \
-    tcpclient.cpp
+    tcpclient.cpp \
+    networkthread.cpp
 
 HEADERS  += napilcddisplay.h \
             distancewidget.h \
@@ -39,7 +40,8 @@ HEADERS  += napilcddisplay.h \
             keywords.h \
     androidsender.h \
     splashscreen.h \
-    tcpclient.h
+    tcpclient.h \
+    networkthread.h
 
 FORMS    += napilcddisplay.ui \
             distancewidget.ui \
