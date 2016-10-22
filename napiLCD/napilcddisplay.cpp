@@ -21,8 +21,6 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), client, SLOT(tryConnect()));
     timer->start(3000);
 
-    //_listener = new UDPListener();
-
     buttonGroup = new QButtonGroup();
 
     _splash = new SplashScreen(this);
@@ -35,8 +33,7 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
     connect(&Server::Instance(), SIGNAL(requestSetupUI(QString, QString, QString, QString)),
             this, SLOT(setupUI(QString, QString, QString, QString)));
 
-    connect(&Server::Instance(), SIGNAL(dataChanged(QString)), &Sender::Instance(), SLOT(onDataChanged(QString)));
-    //connect(_listener, SIGNAL(newAddressIP(QString)), &Sender::Instance(), SLOT(addAddressIP(QString)));
+    connect(&Server::Instance(), SIGNAL(dataChanged(QString)), &Android::Instance(), SLOT(onDataChanged(QString)));
 
     Qt::WindowFlags flags = 0;
     flags = Qt::Window;

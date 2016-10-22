@@ -15,23 +15,9 @@ void AndroidSender::onDataChanged(QString data)
         return;
     }
 
-    qDebug() << "Data changed: " << data << "; IP: " << _sender->peerAddress().toString();
+    qDebug() << "Send data to android: " << data << "; to IP: " << _sender->peerAddress().toString();
 
     _sender->write(QString(data + "\n").toLatin1());
-}
-
-void AndroidSender::addAddressIP(QString address)
-{
-    qDebug() << "add Address: " << address;
-
-    if (!_addressIPs.contains(address)) {
-        _addressIPs.append(address);
-    }
-}
-
-void AndroidSender::disconnect()
-{
-    this->_addressIPs.clear();
 }
 
 QTcpSocket *AndroidSender::sender() const
@@ -48,8 +34,6 @@ void AndroidSender::setSender(QTcpSocket *sender)
     }
 
     qDebug() << "Android IP: " << parts[0];
-    //if (_addressIPs.contains(parts[0])) {
+
     _sender = sender;
-    connect (sender, SIGNAL(disconnected()), this, SLOT(disconnect()));
-    //}
 }

@@ -13,7 +13,7 @@ PressureWidget::PressureWidget(QWidget *parent) :
 
     _timer = new QTimer();
     connect(_timer, SIGNAL(timeout()), this, SLOT(onTimerTick()));
-    _timer->start(2000);
+    _timer->start(1000);
 }
 
 PressureWidget::~PressureWidget()
@@ -23,17 +23,14 @@ PressureWidget::~PressureWidget()
 
 void PressureWidget::setPressure(QString value)
 {
-    ui->lcdNumber->display(value);
-
-    _currentValue = value.toDouble();
-
-    emit pressureChanged(_time, _currentValue);
-
-    _time++;
-
+    _currentValue = value.toDouble() / 1000;
 }
 
 void PressureWidget::onTimerTick()
 {
+    ui->lcdNumber->display(_currentValue);
+
+    emit pressureChanged(_time, _currentValue);
+
     _time += (_timer->interval() / 1000);
 }

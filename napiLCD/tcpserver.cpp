@@ -31,8 +31,10 @@ void TCPServer::readyRead()
 
     QString data = QString(buffer);
 
+    qDebug() << "Receive data: " << data;
+
     if (data.startsWith("aip=")) {
-        Sender::Instance().setSender(_client);
+        Android::Instance().setSender(_client);
     } else {
         QStringList values = data.split(" ", QString::SkipEmptyParts);
 

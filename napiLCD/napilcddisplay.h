@@ -81,8 +81,6 @@ private:
 
     QButtonGroup* buttonGroup;
 
-    //UDPListener *_listener;
-
     SplashScreen *_splash;
 };
 

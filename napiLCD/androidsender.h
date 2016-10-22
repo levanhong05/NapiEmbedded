@@ -17,17 +17,12 @@ public:
 private slots:
     void onDataChanged(QString data);
 
-    void addAddressIP(QString address);
-    void disconnect();
-
 private:
     QTcpSocket *_sender;
 
-    QStringList _addressIPs;
-
 };
 
-typedef Singleton<AndroidSender> Sender;
+typedef Singleton<AndroidSender> Android;
 
 #endif // ANDROIDSENDER_H
 

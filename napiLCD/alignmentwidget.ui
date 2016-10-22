@@ -177,6 +177,15 @@ background-color:none;
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
        </property>
+       <property name="smallDecimalPoint">
+        <bool>false</bool>
+       </property>
+       <property name="digitCount">
+        <number>10</number>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Flat</enum>
+       </property>
       </widget>
      </item>
      <item row="0" column="0">
@@ -331,6 +340,15 @@ background-color:none;
        </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="digitCount">
+        <number>10</number>
+       </property>
+       <property name="mode">
+        <enum>QLCDNumber::Dec</enum>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Flat</enum>
        </property>
       </widget>
      </item>
