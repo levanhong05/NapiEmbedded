@@ -84,9 +84,9 @@ void ChartWidget::onPressureChanged(double time, double value)
     }
 
     if (value > _maxValue) {
-        _maxValue = value + 10;
+        _maxValue = value + 5;
     } else if (value < _minValue) {
-        _minValue = value - 10;
+        _minValue = value - 5;
     }
 
     avgPressure.countValues ++;

@@ -63,7 +63,7 @@ font-size: 20pt;</string>
        </property>
        <property name="maximumSize">
         <size>
-         <width>130</width>
+         <width>135</width>
          <height>16777215</height>
         </size>
        </property>
@@ -108,7 +108,7 @@ font-size: 20pt;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>130</width>
+             <width>135</width>
              <height>536</height>
             </rect>
            </property>
@@ -154,8 +154,11 @@ font-size: 20pt;</string>
               <pointsize>20</pointsize>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">font-size:20pt</string>
+            </property>
             <property name="text">
-             <string>Fermer</string>
+             <string>Remettre</string>
             </property>
            </widget>
           </item>

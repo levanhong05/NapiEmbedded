@@ -133,8 +133,8 @@ void NapiLCDDisplay::removeLayout(QLayout *layout)
 void NapiLCDDisplay::on_btnClose_clicked()
 {
 #ifdef Q_OS_WIN
-    system("shutdown -s -f -t 0");
+    system("shutdown -r");
 #else
-    system("sudo shutdown -P now");
+    system("sudo reboot");
 #endif
 }

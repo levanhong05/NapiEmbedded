@@ -36,6 +36,8 @@ void TCPServer::readyRead()
     if (data.startsWith("aip=")) {
         Android::Instance().setSender(_client);
     } else {
+        data.remove("\n").remove("\r");
+
         QStringList values = data.split(" ", QString::SkipEmptyParts);
 
         if (values.size() >= 4) {
