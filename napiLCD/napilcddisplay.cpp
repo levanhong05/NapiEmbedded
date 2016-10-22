@@ -28,21 +28,22 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
     connect(timerTime, SIGNAL(timeout()), this, SLOT(onUpdateTime()));
     timerTime->start(60000);
 
-    _networkValidator = new NetworkThread();
+    //_networkValidator = new NetworkThread();
 
     //timerNetwork = new QTimer();
     //connect(timerNetwork, SIGNAL(timeout()), this, SLOT(onCheckNetwork()));
-    connect(timerTime, SIGNAL(timeout()), this, SLOT(onCheckNetwork()));
+    //connect(timerTime, SIGNAL(timeout()), this, SLOT(onCheckNetwork()));
     //timerNetwork->start(10000);
 
-    connect(_networkValidator, SIGNAL(messageChange(QString)), this, SLOT(handleNetworkStatus(QString)));
+    //connect(_networkValidator, SIGNAL(messageChange(QString)), this, SLOT(handleNetworkStatus(QString)));
 
-    _networkValidator->start();
+    //_networkValidator->start();
 
     buttonGroup = new QButtonGroup();
 
     _splash = new SplashScreen(this);
     _splash->show();
+    _splash->activateWindow();
 
     connect(buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(onButtonClicked(int)));
 
@@ -152,7 +153,7 @@ void NapiLCDDisplay::onCheckNetwork()
 //#else
 //        _networkValidator->execute("sudo connmanctl status");
 //#endif
-    handleNetworkStatus("");
+    //handleNetworkStatus("");
 }
 
 void NapiLCDDisplay::handleNetworkStatus(QString msg)
@@ -161,12 +162,12 @@ void NapiLCDDisplay::handleNetworkStatus(QString msg)
 
     //if (msg.contains("disconnected")) {
 #ifdef Q_OS_WIN
-        _networkValidator->execute("");
+        //_networkValidator->execute("");
 #else
-        _networkValidator->execute("sudo connmanctl disable wifi");
-        _networkValidator->execute("sudo connmanctl enable wifi");
-        _networkValidator->execute("sudo connmanctl agent on");
-        _networkValidator->execute("sudo connmanctl connect wifi_b827ebc4d985_53415445434f444151_managed_psk");
+        //_networkValidator->execute("sudo connmanctl disable wifi");
+        //_networkValidator->execute("sudo connmanctl enable wifi");
+        //_networkValidator->execute("sudo connmanctl agent on");
+        //_networkValidator->execute("sudo connmanctl connect wifi_b827ebc4d985_53415445434f444151_managed_psk");
 #endif
     //}
 }

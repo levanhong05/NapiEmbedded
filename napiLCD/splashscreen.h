@@ -1,14 +1,14 @@
 #ifndef SPLASHSCREEN_H
 #define SPLASHSCREEN_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QCloseEvent>
 
 namespace Ui {
 class SplashScreen;
 }
 
-class SplashScreen : public QDialog
+class SplashScreen : public QWidget
 {
     Q_OBJECT
 public:

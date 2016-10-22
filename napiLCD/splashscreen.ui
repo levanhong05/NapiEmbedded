@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>SplashScreen</class>
- <widget class="QDialog" name="SplashScreen">
+ <widget class="QWidget" name="SplashScreen">
+  <property name="modal" stdset="0">
+   <bool>false</bool>
+  </property>
   <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -14,16 +17,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Connecter</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
   <property name="styleSheet">
    <string notr="true">border-image: url(:/napilcd/images/construction.jpg) 0 0 0 0 stretch stretch;</string>
-  </property>
-  <property name="modal">
-   <bool>true</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">

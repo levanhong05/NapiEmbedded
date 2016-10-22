@@ -4,7 +4,7 @@
 #include <QDesktopWidget>
 
 SplashScreen::SplashScreen(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::SplashScreen)
 {
     ui->setupUi(this);
@@ -26,6 +26,7 @@ SplashScreen::SplashScreen(QWidget *parent) :
     flags = Qt::Tool;
     flags |= Qt::CustomizeWindowHint;
     flags |= Qt::FramelessWindowHint;
+
     setWindowFlags(flags);
 
     setFixedSize(this->size());

@@ -92,7 +92,7 @@ private:
 
     SplashScreen *_splash;
 
-    NetworkThread *_networkValidator;
+    //NetworkThread *_networkValidator;
 
     QTimer *timerClient;
     QTimer *timerTime;
