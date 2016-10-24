@@ -24,10 +24,10 @@ SOURCES +=  main.cpp\
             chartwidget.cpp \
             tcpserver.cpp \
             udplistener.cpp \
-    androidsender.cpp \
-    splashscreen.cpp \
-    tcpclient.cpp \
-    networkthread.cpp
+            androidsender.cpp \
+            splashscreen.cpp \
+            tcpclient.cpp \
+            networkthread.cpp
 
 HEADERS  += napilcddisplay.h \
             distancewidget.h \
@@ -38,17 +38,17 @@ HEADERS  += napilcddisplay.h \
             udplistener.h \
             singleton.h \
             keywords.h \
-    androidsender.h \
-    splashscreen.h \
-    tcpclient.h \
-    networkthread.h
+            androidsender.h \
+            splashscreen.h \
+            tcpclient.h \
+            networkthread.h
 
 FORMS    += napilcddisplay.ui \
             distancewidget.ui \
             alignmentwidget.ui \
             pressurewidget.ui \
             chartwidget.ui \
-    splashscreen.ui
+            splashscreen.ui
 
 RESOURCES += \
             napilcd_res.qrc

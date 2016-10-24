@@ -2,6 +2,8 @@
 
 #include <QApplication>
 
+#include <QDebug>
+
 NetworkThread::NetworkThread(QObject *parent) :
     QObject(parent)
 {
@@ -10,13 +12,16 @@ NetworkThread::NetworkThread(QObject *parent) :
 
     this->m_process = new QProcess();
 
+    m_isConnected = false;
+
 #ifdef Q_OS_WIN
     this->m_process->setProgram("cmd.exe");
+
 #else
     this->m_process->setProgram("/bin/bash");
 #endif
 
-    connect(this->m_process, SIGNAL(readyRead()), this, SLOT(readyRead()));
+    connect(this->m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(readyReadOutput()));
     connect(this->m_process, SIGNAL(readyReadStandardError()), this, SLOT(readyReadError()));
     connect(this->m_process, SIGNAL(finished(int)), this, SLOT(finished(int)));
 }
@@ -31,28 +36,72 @@ void NetworkThread::start()
     this->m_process->start(QIODevice::ReadWrite);
 }
 
-void NetworkThread::readyRead()
+void NetworkThread::readyReadOutput()
 {
-    while (this->m_process->canReadLine()) {
-        QString line = QString::fromUtf8(this->m_process->readLine());
-        line.remove('\r');
-        line.chop(1);
+    QString output = QString::fromUtf8(this->m_process->readAllStandardOutput());
 
-        emit messageChange(line);
+    output.remove('\r');
+    QStringList lines = output.split('\n', QString::SkipEmptyParts);
+
+    foreach (QString line, lines) {
+        if (line.contains("*AR") && line.contains("SATECODAQ")) {
+            m_isConnected = true;
+
+            qDebug() << "Wifi is connected";
+
+            return;
+        } else if (line.contains("Retry (yes/no)")) {
+            m_process->write(QString("no\n").toUtf8());
+            break;
+        } else if (line.contains("SATECODAQ")) {
+            tryReconnect();
+
+            break;
+        } else if (line.contains("Connected") && line.contains("wifi_b827ebc4d985_53415445434f444151_managed_psk")) {
+            m_isConnected = true;
+
+            qDebug() << "Wifi is connected";
+
+            return;
+        }
     }
+
+    m_isConnected = false;
+
+    qDebug() << "Wifi is not connected";
+
+    scanNetwork();
 }
 
 void NetworkThread::readyReadError()
 {
-    QString all = QString::fromUtf8(this->m_process->readAllStandardError());
-    all.remove('\r');
-    QStringList lines = all.split('\n', QString::SkipEmptyParts);
+    scanNetwork();
+}
 
-    foreach (QString line, lines) {
-        line = line.trimmed();
+void NetworkThread::checkServices()
+{
+    qDebug() << "check Services";
 
-        emit error(line);
-    }
+    m_isCheckService = true;
+    this->m_process->write(QString("sudo connmanctl services\n").toUtf8());
+    m_isCheckService = false;
+}
+
+void NetworkThread::tryReconnect()
+{
+    qDebug() << "Try reconnect wifi";
+
+    this->m_process->write(QString("sudo connmanctl agent on\n").toUtf8());
+    this->m_process->write(QString("sudo connmanctl connect wifi_b827ebc4d985_53415445434f444151_managed_psk\n").toUtf8());
+}
+
+void NetworkThread::scanNetwork()
+{
+    qDebug() << "Scan wifi network";
+    this->m_process->write(QString("sudo connmanctl enable wifi\n").toUtf8());
+
+    this->m_process->write(QString("sudo connmanctl scan wifi\n").toUtf8());
+    this->m_process->write(QString("sudo connmanctl services\n").toUtf8());
 }
 
 void NetworkThread::finished(int exitcode)

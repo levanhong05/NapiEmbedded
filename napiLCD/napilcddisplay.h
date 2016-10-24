@@ -71,10 +71,6 @@ public slots:
 public slots:
     void onUpdateTime();
 
-    void onCheckNetwork();
-
-    void handleNetworkStatus(QString msg);
-
 private slots:
     void on_btnClose_clicked();
 
@@ -92,7 +88,7 @@ private:
 
     SplashScreen *_splash;
 
-    //NetworkThread *_networkValidator;
+    NetworkThread *_networkValidator;
 
     QTimer *timerClient;
     QTimer *timerTime;

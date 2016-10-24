@@ -28,16 +28,13 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
     connect(timerTime, SIGNAL(timeout()), this, SLOT(onUpdateTime()));
     timerTime->start(60000);
 
-    //_networkValidator = new NetworkThread();
+    _networkValidator = new NetworkThread();
 
-    //timerNetwork = new QTimer();
-    //connect(timerNetwork, SIGNAL(timeout()), this, SLOT(onCheckNetwork()));
-    //connect(timerTime, SIGNAL(timeout()), this, SLOT(onCheckNetwork()));
-    //timerNetwork->start(10000);
+    timerNetwork = new QTimer();
+    connect(timerNetwork, SIGNAL(timeout()), _networkValidator, SLOT(checkServices()));
+    timerNetwork->start(10000);
 
-    //connect(_networkValidator, SIGNAL(messageChange(QString)), this, SLOT(handleNetworkStatus(QString)));
-
-    //_networkValidator->start();
+    _networkValidator->start();
 
     buttonGroup = new QButtonGroup();
 
@@ -144,32 +141,6 @@ void NapiLCDDisplay::onUpdateTime()
     QString time = QTime::currentTime().toString("HH:mm");
 
     ui->lblTime->setText(time);
-}
-
-void NapiLCDDisplay::onCheckNetwork()
-{
-//#ifdef Q_OS_WIN
-//        _networkValidator->execute("");
-//#else
-//        _networkValidator->execute("sudo connmanctl status");
-//#endif
-    //handleNetworkStatus("");
-}
-
-void NapiLCDDisplay::handleNetworkStatus(QString msg)
-{
-    Q_UNUSED(msg);
-
-    //if (msg.contains("disconnected")) {
-#ifdef Q_OS_WIN
-        //_networkValidator->execute("");
-#else
-        //_networkValidator->execute("sudo connmanctl disable wifi");
-        //_networkValidator->execute("sudo connmanctl enable wifi");
-        //_networkValidator->execute("sudo connmanctl agent on");
-        //_networkValidator->execute("sudo connmanctl connect wifi_b827ebc4d985_53415445434f444151_managed_psk");
-#endif
-    //}
 }
 
 void NapiLCDDisplay::removeLayout(QLayout *layout)

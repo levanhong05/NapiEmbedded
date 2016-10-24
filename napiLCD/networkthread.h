@@ -15,8 +15,15 @@ public slots:
     virtual void execute(QString cmd);
 
     void start();
-    void readyRead();
+
+    void readyReadOutput();
     void readyReadError();
+
+    void checkServices();
+
+    void tryReconnect();
+
+    void scanNetwork();
 
 private slots:
     void finished(int exitcode);
@@ -32,6 +39,10 @@ private:
     QThread *m_thread;
 
     bool m_isRunning;
+
+    bool m_isCheckService;
+
+    bool m_isConnected;
 
 };
 

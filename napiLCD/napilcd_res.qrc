@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/napilcd">
-        <file>images/wifi.png</file>
         <file>images/angle.png</file>
         <file>images/distance.png</file>
         <file>images/pressure.png</file>
         <file>images/construction.jpg</file>
         <file>images/checked.png</file>
         <file>images/unchecked.png</file>
+        <file>images/logo.jpg</file>
     </qresource>
 </RCC>
