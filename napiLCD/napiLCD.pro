@@ -57,7 +57,7 @@ RESOURCES += \
 win32:LIBS += -L$$OUT_PWD/../bin -lqwt
 unix:LIBS += -L$$OUT_PWD/../qwt/lib -lqwt
 
-INCLUDEPATH += $$PWD/../../qwt/src
-DEPENDPATH += $$PWD/../../qwt/src
+INCLUDEPATH += $$PWD/../qwt/src
+DEPENDPATH += $$PWD/../qwt/src
 
 unix: INCLUDEPATH += /usr/local/qwt-6.1.2/include

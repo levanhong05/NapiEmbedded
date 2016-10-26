@@ -11,7 +11,7 @@
 #include "chartwidget.h"
 
 #include "udplistener.h"
-#include "splashscreen.h"
+//#include "splashscreen.h"
 #include "networkthread.h"
 
 #include <QButtonGroup>
@@ -86,7 +86,7 @@ private:
 
     QButtonGroup* buttonGroup;
 
-    SplashScreen *_splash;
+    //SplashScreen *_splash;
 
     NetworkThread *_networkValidator;
 

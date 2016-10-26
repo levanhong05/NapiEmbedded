@@ -50,7 +50,7 @@ void NetworkThread::readyReadOutput()
             qDebug() << "Wifi is connected";
 
             return;
-        } else if (line.contains("Retry (yes/no)")) {
+        } else if (line.contains("Retry (yes/no) ?")) {
             m_process->write(QString("no\n").toUtf8());
             break;
         } else if (line.contains("SATECODAQ")) {
@@ -83,6 +83,7 @@ void NetworkThread::checkServices()
     qDebug() << "check Services";
 
     m_isCheckService = true;
+    this->m_process->write(QString("sudo connmanctl scan wifi\n").toUtf8());
     this->m_process->write(QString("sudo connmanctl services\n").toUtf8());
     m_isCheckService = false;
 }

@@ -38,9 +38,9 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
 
     buttonGroup = new QButtonGroup();
 
-    _splash = new SplashScreen(this);
-    _splash->show();
-    _splash->activateWindow();
+    //_splash = new SplashScreen(this);
+    //_splash->show();
+    //_splash->activateWindow();
 
     connect(buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(onButtonClicked(int)));
 
@@ -72,10 +72,13 @@ void NapiLCDDisplay::setupUI(QString chipID, QString widgetID, QString key, QStr
 {
     Q_UNUSED(chipID);
 
-    if (_splash) {
-        _splash->close();
-        _splash = NULL;
-    }
+//    if (_splash) {
+//        _splash->close();
+//        _splash = NULL;
+//    }
+
+    ui->frmMessage->setVisible(false);
+    ui->frmWidget->setStyleSheet("border-image:none;");
 
     //Setup button if it not exist
     if (!widgets.contains(widgetID)) {
