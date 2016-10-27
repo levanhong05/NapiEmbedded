@@ -19,8 +19,6 @@ public slots:
     void readyReadOutput();
     void readyReadError();
 
-    void checkServices();
-
     void tryReconnect();
 
     void scanNetwork();
@@ -36,11 +34,8 @@ signals:
 
 private:
     QProcess *m_process;
-    QThread *m_thread;
 
     bool m_isRunning;
-
-    bool m_isCheckService;
 
     bool m_isConnected;
 

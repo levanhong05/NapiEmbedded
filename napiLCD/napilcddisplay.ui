@@ -128,7 +128,7 @@ font-size: 20pt;</string>
         </property>
         <property name="maximumSize">
          <size>
-          <width>130</width>
+          <width>105</width>
           <height>16777215</height>
          </size>
         </property>
@@ -180,8 +180,8 @@ font-size: 15pt;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>130</width>
-              <height>487</height>
+              <width>105</width>
+              <height>502</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -236,11 +236,11 @@ font-size: 15pt;</string>
              <property name="font">
               <font>
                <family>FixedSystem Regular,Fixedsys</family>
-               <pointsize>18</pointsize>
+               <pointsize>15</pointsize>
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">font-size:18pt;</string>
+              <string notr="true">font-size:15pt;</string>
              </property>
              <property name="text">
               <string>Redémarer</string>
@@ -259,9 +259,6 @@ font-size: 15pt;</string>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
         </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
@@ -297,45 +294,6 @@ font-size: 15pt;</string>
             <layout class="QVBoxLayout" name="layoutAlignment"/>
            </item>
           </layout>
-         </item>
-         <item>
-          <widget class="QFrame" name="frmMessage">
-           <layout class="QHBoxLayout" name="layoutMessage">
-            <item>
-             <widget class="QLabel" name="lblMessage">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>800</width>
-                <height>400</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>800</width>
-                <height>400</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: rgb(255, 54, 16);
-border-image: url(:/napilcd/images/construction.jpg) 0 0 0 0 stretch stretch;
-font-size:20pt;</string>
-              </property>
-              <property name="text">
-               <string>Attente de capteur se connecter...</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
          </item>
          <item>
           <layout class="QHBoxLayout" name="layoutBottom">

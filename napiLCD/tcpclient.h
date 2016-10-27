@@ -13,6 +13,8 @@ public:
 public slots:
     void disconnected();
 
+    void sendData(QString data);
+
 private slots:
     void tryConnect();
 

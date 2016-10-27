@@ -56,3 +56,29 @@ void TCPClient::disconnected()
 
     connected = false;
 }
+
+void TCPClient::sendData(QString data)
+{
+    QStringList values = data.split(" ", QString::SkipEmptyParts);
+
+    if (values.size() < 4) {
+        return;
+    }
+
+    QString key = values[values.size() - 2];
+
+    if (key != "ah" || key != "av") {
+        return;
+    }
+
+    QTcpSocket *socket = new QTcpSocket();
+
+    socket->connectToHost("192.168.1.1", 16103);
+
+    if (socket->waitForConnected(1000)) {
+        qDebug() << "Send (av, ah) to 192.168.1.1" << data;
+        socket->write(data.toLatin1());
+    } else {
+        qDebug() << "Cant send data to 192.168.1.1";
+    }
+}

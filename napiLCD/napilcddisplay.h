@@ -3,6 +3,7 @@
 
 #include <QHash>
 #include <QTimer>
+#include <QThread>
 #include <QMainWindow>
 
 #include "distancewidget.h"
@@ -11,8 +12,12 @@
 #include "chartwidget.h"
 
 #include "udplistener.h"
-//#include "splashscreen.h"
+#include "splashscreen.h"
 #include "networkthread.h"
+
+#include "tcpserver.h"
+#include "tcpclient.h"
+#include "androidsender.h"
 
 #include <QButtonGroup>
 #include <QCloseEvent>
@@ -86,9 +91,11 @@ private:
 
     QButtonGroup* buttonGroup;
 
-    //SplashScreen *_splash;
+    SplashScreen *_splash;
 
     NetworkThread *_networkValidator;
+
+    TCPClient *client;
 
     QTimer *timerClient;
     QTimer *timerTime;
@@ -96,6 +103,9 @@ private:
 
     QString m_processToken;
     QString m_tmpBatch;
+
+    QThread *networkThread;
+
 };
 
 #endif // NAPILCDDISPLAY_H

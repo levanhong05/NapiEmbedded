@@ -7,9 +7,6 @@
 NetworkThread::NetworkThread(QObject *parent) :
     QObject(parent)
 {
-    this->m_thread = new QThread();
-    this->m_thread->start();
-
     this->m_process = new QProcess();
 
     m_isConnected = false;
@@ -38,6 +35,8 @@ void NetworkThread::start()
 
 void NetworkThread::readyReadOutput()
 {
+    QThread::currentThread()->msleep(2000);
+
     QString output = QString::fromUtf8(this->m_process->readAllStandardOutput());
 
     output.remove('\r');
@@ -47,7 +46,7 @@ void NetworkThread::readyReadOutput()
         if (line.contains("*AR") && line.contains("SATECODAQ")) {
             m_isConnected = true;
 
-            qDebug() << "Wifi is connected";
+            qDebug() << "Wifi network is connected";
 
             return;
         } else if (line.contains("Retry (yes/no) ?")) {
@@ -57,10 +56,10 @@ void NetworkThread::readyReadOutput()
             tryReconnect();
 
             break;
-        } else if (line.contains("Connected") && line.contains("wifi_b827ebc4d985_53415445434f444151_managed_psk")) {
+        } else if (line.contains("Connected") && line.contains("wifi_001f1fe4aadd_53415445434f444151_managed_psk")) {
             m_isConnected = true;
 
-            qDebug() << "Wifi is connected";
+            qDebug() << "Wifi network is connected";
 
             return;
         }
@@ -78,28 +77,17 @@ void NetworkThread::readyReadError()
     scanNetwork();
 }
 
-void NetworkThread::checkServices()
-{
-    qDebug() << "check Services";
-
-    m_isCheckService = true;
-    this->m_process->write(QString("sudo connmanctl scan wifi\n").toUtf8());
-    this->m_process->write(QString("sudo connmanctl services\n").toUtf8());
-    m_isCheckService = false;
-}
-
 void NetworkThread::tryReconnect()
 {
     qDebug() << "Try reconnect wifi";
 
     this->m_process->write(QString("sudo connmanctl agent on\n").toUtf8());
-    this->m_process->write(QString("sudo connmanctl connect wifi_b827ebc4d985_53415445434f444151_managed_psk\n").toUtf8());
+    this->m_process->write(QString("sudo connmanctl connect wifi_001f1fe4aadd_53415445434f444151_managed_psk\n").toUtf8());
 }
 
 void NetworkThread::scanNetwork()
 {
     qDebug() << "Scan wifi network";
-    this->m_process->write(QString("sudo connmanctl enable wifi\n").toUtf8());
 
     this->m_process->write(QString("sudo connmanctl scan wifi\n").toUtf8());
     this->m_process->write(QString("sudo connmanctl services\n").toUtf8());

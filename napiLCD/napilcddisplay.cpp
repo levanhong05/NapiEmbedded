@@ -2,9 +2,6 @@
 #include "ui_napilcddisplay.h"
 
 #include "keywords.h"
-#include "tcpserver.h"
-#include "tcpclient.h"
-#include "androidsender.h"
 
 #include <QFileInfo>
 #include <QTime>
@@ -16,7 +13,7 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    TCPClient *client = new TCPClient();
+    client = new TCPClient();
 
     timerClient = new QTimer();
     connect(timerClient, SIGNAL(timeout()), client, SLOT(tryConnect()));
@@ -29,18 +26,22 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
     timerTime->start(60000);
 
     _networkValidator = new NetworkThread();
+    networkThread = new QThread(this);
+
+    _networkValidator->moveToThread(networkThread);
+    networkThread->start();
 
     timerNetwork = new QTimer();
-    connect(timerNetwork, SIGNAL(timeout()), _networkValidator, SLOT(checkServices()));
+    connect(timerNetwork, SIGNAL(timeout()), _networkValidator, SLOT(scanNetwork()));
     timerNetwork->start(10000);
 
     _networkValidator->start();
 
     buttonGroup = new QButtonGroup();
 
-    //_splash = new SplashScreen(this);
-    //_splash->show();
-    //_splash->activateWindow();
+    _splash = new SplashScreen(this);
+    _splash->show();
+    _splash->activateWindow();
 
     connect(buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(onButtonClicked(int)));
 
@@ -50,6 +51,7 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
             this, SLOT(setupUI(QString, QString, QString, QString)));
 
     connect(&Server::Instance(), SIGNAL(dataChanged(QString)), &Android::Instance(), SLOT(onDataChanged(QString)));
+    connect(&Server::Instance(), SIGNAL(dataChanged(QString)), client, SLOT(sendData(QString)));
 
     Qt::WindowFlags flags = 0;
     flags = Qt::Window;
@@ -72,13 +74,10 @@ void NapiLCDDisplay::setupUI(QString chipID, QString widgetID, QString key, QStr
 {
     Q_UNUSED(chipID);
 
-//    if (_splash) {
-//        _splash->close();
-//        _splash = NULL;
-//    }
-
-    ui->frmMessage->setVisible(false);
-    ui->frmWidget->setStyleSheet("border-image:none;");
+    if (_splash) {
+        _splash->close();
+        _splash = NULL;
+    }
 
     //Setup button if it not exist
     if (!widgets.contains(widgetID)) {
