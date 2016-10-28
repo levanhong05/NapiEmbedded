@@ -10,11 +10,6 @@ ChartWidget::ChartWidget(QWidget *parent) :
     plot = new QwtPlot();
     plot->setTitle(tr("Graphe de pression"));
 
-    // Customize axis label font
-    QFont font;
-    font.setFamily("Fixedsys");
-    font.setPixelSize(20);
-
     plot->setAutoFillBackground(true);
     palette = plot->palette();
     palette.setColor(QPalette::Background, QColor(255,255,255));
@@ -34,7 +29,6 @@ ChartWidget::ChartWidget(QWidget *parent) :
 
     // Customize axis label font
     QFont labelsFont;
-    labelsFont.setFamily("Fixedsys");
     labelsFont.setPointSize(15);
 
     plot->setAxisFont(QwtPlot::xBottom, labelsFont);
@@ -69,7 +63,8 @@ ChartWidget::ChartWidget(QWidget *parent) :
     this->plot->show();
 
     _minValue = 0;
-    _maxTime = _maxValue = 10;
+    _maxTime = _maxValue;
+    _maxValue = 1;
 }
 
 ChartWidget::~ChartWidget()

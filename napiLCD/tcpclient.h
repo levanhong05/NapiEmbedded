@@ -4,24 +4,24 @@
 #include <QObject>
 #include <QTcpSocket>
 
+#include "singleton.h"
+
 class TCPClient : public QObject
 {
     Q_OBJECT
 public:
     explicit TCPClient(QObject *parent = 0);
 
+    void setAddress(QString ipAddress);
+
 public slots:
-    void disconnected();
-
-    void sendData(QString data);
-
-private slots:
-    void tryConnect();
+    void onDataChanged(QString data);
 
 private:
-    QTcpSocket *socket;
-    bool connected;
+    QString _ipAddress;
 
 };
+
+typedef Singleton<TCPClient> Client;
 
 #endif // TCPCLIENT_H

@@ -1,4 +1,6 @@
 #include "tcpserver.h"
+
+#include "tcpclient.h"
 #include "androidsender.h"
 
 #include <QDebug>
@@ -34,22 +36,31 @@ void TCPServer::readyRead()
     qDebug() << "Receive data: " << data;
 
     if (data.startsWith("aip=")) {
+        data = data.remove("\r").remove("\n");
+        Android::Instance().setAddress(data.split("=", QString::SkipEmptyParts)[1]);
         Android::Instance().setSender(_client);
+    } else if (data.startsWith("iip=")) {
+        data = data.remove("\r").remove("\n");
+        Client::Instance().setAddress(data.split("=", QString::SkipEmptyParts)[1]);
     } else {
-        data.remove("\n").remove("\r");
+        QStringList datas = data.split(QRegExp("[\\n\\r]"), QString::SkipEmptyParts);
 
-        QStringList values = data.split(" ", QString::SkipEmptyParts);
+        foreach (QString value, datas) {
+            QStringList values = value.split(" ", QString::SkipEmptyParts);
 
-        if (values.size() >= 4) {
-            QString chipID = values[0];
-            QString widgetID = values[1];
-            QString key = values[values.size() - 2];
-            QString value = values[values.size() - 1];
+            qDebug() << "Receive bbbb data: " << value;
 
-            emit requestSetupUI(chipID, widgetID, key, value);
+            if (values.size() >= 4) {
+                QString chipID = values[0];
+                QString widgetID = values[1];
+                QString key = values[values.size() - 2];
+                QString value = values[values.size() - 1];
+
+                emit requestSetupUI(chipID, widgetID, key, value);
+            }
+
+            emit dataChanged(values.join(" "));
         }
-
-        emit dataChanged(values.join(" "));
 
         _client->close();
     }

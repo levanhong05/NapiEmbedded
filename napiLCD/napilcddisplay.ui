@@ -10,6 +10,13 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>17</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Napi LCD Display</string>
   </property>
@@ -20,8 +27,7 @@
   <property name="styleSheet">
    <string notr="true">border-color: rgb(255, 52, 16);
 background-color: rgb(205, 205, 205);
-font-family: &quot;FixedSystem Regular&quot;,Fixedsys;
-font-size: 20pt;</string>
+font-size: 17pt;</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -73,6 +79,13 @@ font-size: 20pt;</string>
        </item>
        <item>
         <widget class="QLabel" name="lblTitle">
+         <property name="font">
+          <font>
+           <pointsize>17</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
           <string notr="true">color: rgb(255, 52, 16);</string>
          </property>
@@ -97,7 +110,7 @@ font-size: 20pt;</string>
        <item>
         <widget class="QLabel" name="lblTime">
          <property name="styleSheet">
-          <string notr="true">font-size:20pt</string>
+          <string notr="true">font-size:15pt</string>
          </property>
          <property name="text">
           <string>14:45</string>
@@ -128,7 +141,7 @@ font-size: 20pt;</string>
         </property>
         <property name="maximumSize">
          <size>
-          <width>105</width>
+          <width>100</width>
           <height>16777215</height>
          </size>
         </property>
@@ -180,8 +193,8 @@ font-size: 15pt;</string>
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>105</width>
-              <height>502</height>
+              <width>100</width>
+              <height>498</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -236,11 +249,11 @@ font-size: 15pt;</string>
              <property name="font">
               <font>
                <family>FixedSystem Regular,Fixedsys</family>
-               <pointsize>15</pointsize>
+               <pointsize>10</pointsize>
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">font-size:15pt;</string>
+              <string notr="true">font-size:10pt;</string>
              </property>
              <property name="text">
               <string>Redémarer</string>

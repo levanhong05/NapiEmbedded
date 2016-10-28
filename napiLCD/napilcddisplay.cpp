@@ -13,29 +13,11 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    client = new TCPClient();
-
-    timerClient = new QTimer();
-    connect(timerClient, SIGNAL(timeout()), client, SLOT(tryConnect()));
-    timerClient->start(3000);
-
     onUpdateTime();
 
     timerTime = new QTimer();
     connect(timerTime, SIGNAL(timeout()), this, SLOT(onUpdateTime()));
     timerTime->start(60000);
-
-    _networkValidator = new NetworkThread();
-    networkThread = new QThread(this);
-
-    _networkValidator->moveToThread(networkThread);
-    networkThread->start();
-
-    timerNetwork = new QTimer();
-    connect(timerNetwork, SIGNAL(timeout()), _networkValidator, SLOT(scanNetwork()));
-    timerNetwork->start(10000);
-
-    _networkValidator->start();
 
     buttonGroup = new QButtonGroup();
 
@@ -51,7 +33,7 @@ NapiLCDDisplay::NapiLCDDisplay(QWidget *parent) :
             this, SLOT(setupUI(QString, QString, QString, QString)));
 
     connect(&Server::Instance(), SIGNAL(dataChanged(QString)), &Android::Instance(), SLOT(onDataChanged(QString)));
-    connect(&Server::Instance(), SIGNAL(dataChanged(QString)), client, SLOT(sendData(QString)));
+    connect(&Server::Instance(), SIGNAL(dataChanged(QString)), &Client::Instance(), SLOT(onDataChanged(QString)));
 
     Qt::WindowFlags flags = 0;
     flags = Qt::Window;
@@ -82,7 +64,7 @@ void NapiLCDDisplay::setupUI(QString chipID, QString widgetID, QString key, QStr
     //Setup button if it not exist
     if (!widgets.contains(widgetID)) {
         QFont font;
-        font.setPointSize(20);
+        font.setPointSize(15);
         QToolButton *button = new QToolButton();
         button->setText(tr("Banche %1").arg(widgetID));
         button->setMinimumSize(35, 50);

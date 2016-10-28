@@ -13,7 +13,6 @@
 
 #include "udplistener.h"
 #include "splashscreen.h"
-#include "networkthread.h"
 
 #include "tcpserver.h"
 #include "tcpclient.h"
@@ -93,18 +92,7 @@ private:
 
     SplashScreen *_splash;
 
-    NetworkThread *_networkValidator;
-
-    TCPClient *client;
-
-    QTimer *timerClient;
     QTimer *timerTime;
-    QTimer *timerNetwork;
-
-    QString m_processToken;
-    QString m_tmpBatch;
-
-    QThread *networkThread;
 
 };
 

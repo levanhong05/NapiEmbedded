@@ -24,8 +24,7 @@ border-color: rgb(255, 0, 0);
 }
 
 QWidget{
-font-family: &quot;FixedSystem Regular&quot;,Fixedsys;
-font-size: 20pt;
+font-size: 17pt;
 border: none;
 background-color:none;
 }</string>
@@ -59,8 +58,9 @@ background-color:none;
        </property>
        <property name="font">
         <font>
-         <family>FixedSystem Regular,Fixedsys</family>
-         <pointsize>20</pointsize>
+         <pointsize>17</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
@@ -176,8 +176,7 @@ background-color:none;
        </property>
        <property name="font">
         <font>
-         <family>FixedSystem Regular,Fixedsys</family>
-         <pointsize>20</pointsize>
+         <pointsize>17</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -204,8 +203,7 @@ background-color:none;
       <widget class="QLabel" name="lblHorizontal">
        <property name="font">
         <font>
-         <family>FixedSystem Regular,Fixedsys</family>
-         <pointsize>20</pointsize>
+         <pointsize>17</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -220,8 +218,7 @@ background-color:none;
       <widget class="QLabel" name="lblHUnit">
        <property name="font">
         <font>
-         <family>FixedSystem Regular,Fixedsys</family>
-         <pointsize>20</pointsize>
+         <pointsize>17</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -236,8 +233,7 @@ background-color:none;
       <widget class="QLabel" name="lblVertical">
        <property name="font">
         <font>
-         <family>FixedSystem Regular,Fixedsys</family>
-         <pointsize>20</pointsize>
+         <pointsize>17</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -365,8 +361,7 @@ background-color:none;
       <widget class="QLabel" name="lblVUnit">
        <property name="font">
         <font>
-         <family>FixedSystem Regular,Fixedsys</family>
-         <pointsize>20</pointsize>
+         <pointsize>17</pointsize>
         </font>
        </property>
        <property name="styleSheet">

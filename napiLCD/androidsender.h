@@ -1,6 +1,7 @@
 #ifndef ANDROIDSENDER_H
 #define ANDROIDSENDER_H
 
+#include <QObject>
 #include <QTcpSocket>
 
 #include "singleton.h"
@@ -11,14 +12,24 @@ class AndroidSender : public QObject
 public:
     explicit AndroidSender(QObject *parent = 0);
 
+    void setAddress(QString ipAddress);
+
     QTcpSocket *sender() const;
     void setSender(QTcpSocket *sender);
 
-private slots:
+public slots:
     void onDataChanged(QString data);
 
 private:
+    QString _ipAddress;
+
     QTcpSocket *_sender;
+
+    QString _distanceHorzi;
+    QString _distanceVerti;
+    QString _alignHorzi;
+    QString _alignVerti;
+    QString _pressure;
 
 };
 
