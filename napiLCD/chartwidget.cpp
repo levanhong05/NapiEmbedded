@@ -29,11 +29,11 @@ ChartWidget::ChartWidget(QWidget *parent) :
 
     // Customize axis label font
     QFont labelsFont;
-    labelsFont.setPointSize(15);
+    labelsFont.setPointSize(13);
 
+    plot->setAxisTitle(QwtPlot::xBottom, tr("Temps"));
     plot->setAxisFont(QwtPlot::xBottom, labelsFont);
     plot->setAxisFont(QwtPlot::yLeft, labelsFont);
-    plot->setAxisTitle(QwtPlot::xBottom, tr("Temps"));
 
     sPressure.setDefaultMaxMin();
     avgPressure.setDefault();

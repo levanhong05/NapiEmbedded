@@ -21,7 +21,6 @@ background-color: qconicalgradient(cx:1, cy:0.381, angle:0, stop:0 rgba(115, 177
 }
 
 QWidget{
-font-size: 17pt;
 border: none;
 background-color:none;
 }</string>

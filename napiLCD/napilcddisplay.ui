@@ -26,8 +26,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">border-color: rgb(255, 52, 16);
-background-color: rgb(205, 205, 205);
-font-size: 17pt;</string>
+background-color: rgb(205, 205, 205);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -194,7 +193,7 @@ font-size: 15pt;</string>
               <x>0</x>
               <y>0</y>
               <width>100</width>
-              <height>498</height>
+              <height>502</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
