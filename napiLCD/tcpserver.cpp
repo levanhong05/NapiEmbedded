@@ -27,25 +27,33 @@ void TCPServer::acceptConnection()
 
 void TCPServer::readyRead()
 {
-    char buffer[1024] = {0};
+    QByteArray buffer(1024, '\0');
 
-    _client->read(buffer, _client->bytesAvailable());
+    if (_client->bytesAvailable() > 0) {
+        buffer = _client->readAll();
+    } else {
+        return;
+    }
 
-    QString data = QString(buffer);
+    QString data = QString(buffer.data());
 
     qDebug() << "Receive data: " << data;
 
-    if (data.startsWith("aip=")) {
-        data = data.remove("\r").remove("\n");
-        Android::Instance().setAddress(data.split("=", QString::SkipEmptyParts)[1]);
-        Android::Instance().setSender(_client);
-    } else if (data.startsWith("iip=")) {
-        data = data.remove("\r").remove("\n");
-        Client::Instance().setAddress(data.split("=", QString::SkipEmptyParts)[1]);
-    } else {
-        QStringList datas = data.split(QRegExp("[\\n\\r]"), QString::SkipEmptyParts);
+    if (data == "") {
+        return;
+    }
 
-        foreach (QString value, datas) {
+    QStringList datas = data.split(QRegExp("[\\n\\r]"), QString::SkipEmptyParts);
+
+    foreach (QString value, datas) {
+        if (value.startsWith("aip=")) {
+            value = value.remove("\r").remove("\n");
+            Android::Instance().setAddress(value.split("=", QString::SkipEmptyParts)[1]);
+            Android::Instance().setSender(_client);
+        } else if (value.startsWith("iip=")) {
+            value = data.remove("\r").remove("\n");
+            Client::Instance().setAddress(value.split("=", QString::SkipEmptyParts)[1]);
+        } else {
             QStringList values = value.split(" ", QString::SkipEmptyParts);
 
             qDebug() << "Receive bbbb data: " << value;
@@ -60,8 +68,8 @@ void TCPServer::readyRead()
             }
 
             emit dataChanged(values.join(" "));
-        }
 
-        _client->close();
+            _client->close();
+        }
     }
 }

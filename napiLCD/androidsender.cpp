@@ -18,15 +18,15 @@ void AndroidSender::onDataChanged(QString data)
 
     if (values.size() >= 4) {
         if (values[values.size() - 2] == "dh") {
-            _distanceHorzi = values.join("");
+            _distanceHorzi = values.join(" ");
         } else if (values[values.size() - 2] == "dv") {
-            _distanceVerti = values.join("");
+            _distanceVerti = values.join(" ");
         } else if (values[values.size() - 2] == "ah") {
-            _alignHorzi = values.join("");
+            _alignHorzi = values.join(" ");
         } else if (values[values.size() - 2] == "av") {
-            _alignVerti = values.join("");
+            _alignVerti = values.join(" ");
         } else if (values[values.size() - 2] == "p") {
-            _pressure = values.join("");
+            _pressure = values.join(" ");
         }
     }
 //    if (_ipAddress == "") {

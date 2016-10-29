@@ -10,6 +10,14 @@ TCPClient::TCPClient(QObject *parent) :
 
 void TCPClient::onDataChanged(QString data)
 {
+    QStringList values = data.split(" ", QString::SkipEmptyParts);
+
+    if (values.size() >= 4) {
+        if (values[values.size() - 2] == "p") {
+            return;
+        }
+    }
+
     if (_ipAddress == "") {
         qDebug() << "Client IP address is empty, cant connect.";
         return;
