@@ -32,7 +32,7 @@ ChartWidget::ChartWidget(QWidget *parent) :
     labelsFont.setPointSize(13);
 
     plot->setAxisTitle(QwtPlot::xBottom, tr("Temps"));
-    plot->setAxisFont(QwtPlot::xBottom, labelsFont);
+        plot->setAxisFont(QwtPlot::xBottom, labelsFont);
     plot->setAxisFont(QwtPlot::yLeft, labelsFont);
 
     sPressure.setDefaultMaxMin();
